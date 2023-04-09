@@ -180,7 +180,7 @@
     "winston": "^3.3.3",
     "yaml-schema-validator": "^1.2.2",
     "z85": "^0.0.2",
-    "injection-sanitizer": "file:/Users/jodiakyulas/Code/CS5331-project"
+    "injection-firewall-middleware": "file:/Users/jodiakyulas/Code/CS5331-project"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
@@ -254,7 +254,7 @@
     "ts-jest": "^26.5.0",
     "ts-node": "^10.8.0",
     "typescript": "~4.6.0",
-    "injection-sanitizer": "file:/Users/jodiakyulas/Code/CS5331-project"
+    "injection-firewall-middleware": "file:/Users/jodiakyulas/Code/CS5331-project"
   },
   "engines": {
     "node": "14 - 19"
