@@ -20,7 +20,6 @@ import { BasketItemModel } from './models/basketitem'
 import { FeedbackModel } from './models/feedback'
 import { ProductModel } from './models/product'
 import { WalletModel } from './models/wallet'
-import injectionSanitizer from 'injection-sanitizer'
 const startTime = Date.now()
 const path = require('path')
 const morgan = require('morgan')
@@ -549,7 +548,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/admin/application-version', appVersion())
   app.get('/rest/captcha', captcha())
   app.get('/rest/image-captcha', imageCaptcha())
-  app.get('/rest/track-order/:id', injectionSanitizer({ requestParamsToSanitize: ['id'] }), trackOrder())
+  app.get('/rest/track-order/:id', injectionFireWallMiddleware({ requestParamsToSanitize: ['id'] }), trackOrder())
   app.get('/rest/country-mapping', countryMapping())
   app.get('/rest/saveLoginIp', saveLoginIp())
   app.post('/rest/user/data-export', security.appendUserId(), imageCaptcha.verifyCaptcha())
@@ -566,9 +565,9 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/chatbot/status', chatbot.status())
   app.post('/rest/chatbot/respond', chatbot.process())
   /* NoSQL API endpoints */
-  app.get('/rest/products/:id/reviews', injectionSanitizer({ requestParamsToSanitize: ['id'] }), showProductReviews())
+  app.get('/rest/products/:id/reviews', injectionFireWallMiddleware({ requestParamsToSanitize: ['id'] }), showProductReviews())
   app.put('/rest/products/:id/reviews', createProductReviews())
-  app.patch('/rest/products/reviews', [security.isAuthorized(), injectionSanitizer({ requestBodyPathsToSanitize: ['id'] })], updateProductReviews())
+  app.patch('/rest/products/reviews', [security.isAuthorized(), injectionFireWallMiddleware({ requestBodyPathsToSanitize: ['id'] })], updateProductReviews())
   app.post('/rest/products/reviews', security.isAuthorized(), likeProductReviews())
 
   /* B2B Order API */
@@ -716,7 +715,7 @@ import { BasketItemModel } from './models/basketitem'
 import { FeedbackModel } from './models/feedback'
 import { ProductModel } from './models/product'
 import { WalletModel } from './models/wallet'
-import injectionSanitizer from 'injection-sanitizer'
+import injectionFireWallMiddleware from 'injection-firewall-middleware'
 const startTime = Date.now()
 const path = require('path')
 const morgan = require('morgan')
@@ -1245,7 +1244,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/admin/application-version', appVersion())
   app.get('/rest/captcha', captcha())
   app.get('/rest/image-captcha', imageCaptcha())
-  app.get('/rest/track-order/:id', injectionSanitizer({ requestParamsToSanitize: ['id'] }), trackOrder())
+  app.get('/rest/track-order/:id', injectionFireWallMiddleware({ requestParamsToSanitize: ['id'] }), trackOrder())
   app.get('/rest/country-mapping', countryMapping())
   app.get('/rest/saveLoginIp', saveLoginIp())
   app.post('/rest/user/data-export', security.appendUserId(), imageCaptcha.verifyCaptcha())
@@ -1262,9 +1261,9 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/chatbot/status', chatbot.status())
   app.post('/rest/chatbot/respond', chatbot.process())
   /* NoSQL API endpoints */
-  app.get('/rest/products/:id/reviews', injectionSanitizer({ requestParamsToSanitize: ['id'] }), showProductReviews())
+  app.get('/rest/products/:id/reviews', injectionFireWallMiddleware({ requestParamsToSanitize: ['id'] }), showProductReviews())
   app.put('/rest/products/:id/reviews', createProductReviews())
-  app.patch('/rest/products/reviews', [security.isAuthorized(), injectionSanitizer({ requestBodyPathsToSanitize: ['id'] })], updateProductReviews())
+  app.patch('/rest/products/reviews', [security.isAuthorized(), injectionFireWallMiddleware({ requestBodyPathsToSanitize: ['id'] })], updateProductReviews())
   app.post('/rest/products/reviews', security.isAuthorized(), likeProductReviews())
 
   /* B2B Order API */
