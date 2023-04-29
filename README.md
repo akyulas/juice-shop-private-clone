@@ -1,3 +1,52 @@
+# Modified Juice Shop
+
+## Background
+
+This repository contains code that has been modified by a group of National University of Singapore (NUS) students.
+
+This repository is used to test the express middleware built by the same group of students to detect SQL and noSQL injection using AI models and also some manual input validation.
+
+The express middleware can be found here and there are some pre-requisites that need to be fullfilled:
+https://github.com/akyulas/CS5331-project
+
+## Pre-requisites
+
+This juice shop application was tested with the following python and node version:
+1. Python v3.11.3
+2. Node v18.15.0
+
+The assumption made in the creation of this middleware is that the python 3 command is this:
+`python3`
+
+And the corresponding pip command:
+`pip3`
+
+This middleware might not work correctly on machines where this is not the case.
+
+## How to start up this library
+To start using this repo please do the following first:
+Modfiy this line and provide absolute path to the package.json of the express middleware in package.json
+```
+file:<Absolute Path to injection fireall middleware>
+```
+
+To start up Juice Shop, please use the following set of commands:
+```
+npm install
+npm start
+```
+
+## Postman Collection
+An example postman collection that can be used to test the application is provided as well in Injection Firewall Middleware with Juice Shop.postman_collection.json
+
+Note: One of the requests (NoSQL Manipulation) requires token from the Login call.
+
+1. You can make the Login call and you will get the token in `authentication.token`
+
+2. You will need to provide the token that was returned in the Login call and pass it in the headers as such in the Authorization header:
+Authorization=Bearer `<token>`
+
+
 # ![Juice Shop Logo](https://raw.githubusercontent.com/juice-shop/juice-shop/master/frontend/src/assets/public/images/JuiceShop_Logo_100px.png) OWASP Juice Shop
 
 [![OWASP Flagship](https://img.shields.io/badge/owasp-flagship%20project-48A646.svg)](https://owasp.org/projects/#sec-flagships)
