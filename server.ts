@@ -528,14 +528,14 @@ restoreOverwrittenFilesWithOriginals().then(() => {
 
   /* Custom Restful API */
   // app.post('/rest/user/login', login())
-  app.post('/rest/user/login', injectionFireWallMiddleware({ requestBodyPathsToSanitize: ['email'] }), login())
+  app.post('/rest/user/login', injectionFireWallMiddleware({ requestBodyPathsToBeChecked: ['email'] }), login())
   app.get('/rest/user/change-password', changePassword())
   app.post('/rest/user/reset-password', resetPassword())
   app.get('/rest/user/security-question', securityQuestion())
   app.get('/rest/user/whoami', security.updateAuthenticatedUsers(), currentUser())
   app.get('/rest/user/authentication-details', authenticatedUsers())
   // app.get('/rest/products/search', search())
-  app.get('/rest/products/search', injectionFireWallMiddleware({ queryParamsToSanitize: ['q'] }), search())
+  app.get('/rest/products/search', injectionFireWallMiddleware({ queryParamsToBeChecked: ['q'] }), search())
   app.get('/rest/basket/:id', basket())
   app.post('/rest/basket/:id/checkout', order())
   app.put('/rest/basket/:id/coupon/:coupon', coupon())
@@ -552,7 +552,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/captcha', captcha())
   app.get('/rest/image-captcha', imageCaptcha())
   // app.get('/rest/track-order/:id', trackOrder())
-  app.get('/rest/track-order/:id', injectionFireWallMiddleware({ pathParamsToSanitize: ['id'] }), trackOrder())
+  app.get('/rest/track-order/:id', injectionFireWallMiddleware({ pathParamsToBeChecked: ['id'] }), trackOrder())
   app.get('/rest/country-mapping', countryMapping())
   app.get('/rest/saveLoginIp', saveLoginIp())
   app.post('/rest/user/data-export', security.appendUserId(), imageCaptcha.verifyCaptcha())
@@ -570,10 +570,10 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.post('/rest/chatbot/respond', chatbot.process())
   /* NoSQL API endpoints */
   // app.get('/rest/products/:id/reviews', showProductReviews())
-  app.get('/rest/products/:id/reviews', injectionFireWallMiddleware({ pathParamsToSanitize: ['id'] }), showProductReviews())
+  app.get('/rest/products/:id/reviews', injectionFireWallMiddleware({ pathParamsToBeChecked: ['id'] }), showProductReviews())
   app.put('/rest/products/:id/reviews', createProductReviews())
   // app.patch('/rest/products/reviews', security.isAuthorized(), updateProductReviews())
-  app.patch('/rest/products/reviews', [security.isAuthorized(), injectionFireWallMiddleware({ requestBodyPathsToSanitize: ['id'] })], updateProductReviews())
+  app.patch('/rest/products/reviews', [security.isAuthorized(), injectionFireWallMiddleware({ requestBodyPathsToBeChecked: ['id'] })], updateProductReviews())
   app.post('/rest/products/reviews', security.isAuthorized(), likeProductReviews())
 
   /* B2B Order API */
